@@ -46,7 +46,7 @@ int main()
   //pid.Init(0.05, -0.001, 0.0);
   //pid.Init(0.05, 0.0001, 0.0);
   //pid.Init(0.025, 0.001, 0.0);
-  pid.Init(0.001, 0.001, 0.001);
+  pid.Init(0.025, 0.001, 0.0001);
   pid.p_error = 0.0;
 
 
@@ -85,8 +85,8 @@ int main()
           }
 
           // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
-
+          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+            std::cout << "CTE: " << cte << " d_error " << pid.d_error << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
