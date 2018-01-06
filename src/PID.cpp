@@ -11,11 +11,17 @@ PID::PID() {}
 PID::~PID() {}
 
 void PID::Init(double Kp, double Ki, double Kd) {
+  Kp = 1.0;
+  Ki = 0.1;
+  Kd = 0.1;
 }
 
 void PID::UpdateError(double cte) {
+  d_error = cte - p_error;
+  p_error = cte;
+  i_error += cte;
 }
 
 double PID::TotalError() {
-}
 
+}
