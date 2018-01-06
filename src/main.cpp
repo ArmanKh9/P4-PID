@@ -73,9 +73,7 @@ int main()
           }
 
           // DEBUG
-          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
-          std::cout << "K p values " << Kp <<std::endl;
-          std::cout << "P error values " << pid.p_error <<std::endl;
+          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
 
           json msgJson;
