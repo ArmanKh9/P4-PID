@@ -34,8 +34,7 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
-  double Kp, Ki, Kd;
-  pid.Init(Kp, Ki, Kd);
+  pid.Init(0.1, 0.1, 0.1);
   pid.p_error = 0.0;
 
 
@@ -61,11 +60,9 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          Kp = pid.Kp;
-          Ki = pid.Ki;
-          Kd = pid.Kd;
+
           pid.UpdateError(cte);
-          steer_value = -Kp*pid.p_error - Kd*pid.d_error - Ki*pid.i_error;
+          steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
 
           if (steer_value>1.0){
             steer_value -= 1.0;
