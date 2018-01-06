@@ -39,7 +39,8 @@ int main()
   //pid.Init(0.1, 1.0, 0.1);
   //pid.Init(0.1, 0.1, 1.0);
   //pid.Init(0.01, 0.0, 0.0);
-  pid.Init(0.05, 0.0, 0.0);
+  //pid.Init(0.05, 0.0, 0.0);
+  pid.Init(0.05, 0.01, 0.0);
   pid.p_error = 0.0;
 
 
