@@ -35,7 +35,7 @@ int main()
   PID pid;
   // TODO: Initialize the pid variable.
   double Kp, Ki, Kd;
-  pid.init(Kp, Ki, Kd);
+  pid.Init(Kp, Ki, Kd);
   pid.p_error = 0.0;
   Kp = pid.Kp;
   Ki = pid.Ki;

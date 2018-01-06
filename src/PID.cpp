@@ -11,9 +11,9 @@ PID::PID() {}
 PID::~PID() {}
 
 void PID::Init(double Kp, double Ki, double Kd) {
-  Kp = 50.0;
-  Ki = 10.0;
-  Kd = 10.0;
+  Kp = 1.0;
+  Ki = 0.1;
+  Kd = 0.1;
 }
 
 void PID::UpdateError(double cte) {
