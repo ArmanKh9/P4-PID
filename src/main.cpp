@@ -49,7 +49,10 @@ int main()
   //pid.Init(0.025, 0.001, 0.0001);
   //pid.Init(0.05, 1.0, 0.0001);
   //pid.Init(0.05, 0.1, 0.001);
-  pid.Init(0.03, 0.0, 0.0);
+  //pid.Init(0.03, 0.0, 0.0);
+  //Kp = 0.03 provides an acceptable drive until after the bridge.
+  // now trying to Ki to improve the already acceptable portion of the drive better
+  pid.Init(0.03, 0.0, 0.1);
 
   pid.p_error = 0.0;
   pid.tstep = 0;
