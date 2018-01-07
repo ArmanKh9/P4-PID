@@ -55,10 +55,12 @@ int main()
   pid.p_error = 0.0;
 
   //time step counter
-  int tstep = 0;
+  int tstep;
+  tstep = 0;
 
   // previous error
   double prev_error;
+  prev_error = 0.0;
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -84,14 +86,14 @@ int main()
           */
           tstep += 1;
           if (tstep==20){
-            double dp = 0.01
-            std::cout<< "previous total error" <<prev_error<<endl;
-            std::cout<< "current total error" <<pid.total_error<<endl;
+            double dp = 0.01;
+            std::cout<< "previous total error" <<prev_error<<std::endl;
+            std::cout<< "current total error" <<pid.total_error<<std::endl;
 
             if (prev_error<pid.total_error){
-              std::cout<<"improvement"<<endl;
+              std::cout<<"improvement"<<std::endl;
             } else {
-              std::cout<<"No improvement"<<endl;
+              std::cout<<"No improvement"<<std::endl;
             }
 
             prev_error = pid.total_error;
