@@ -51,11 +51,12 @@ int main()
   //pid.Init(0.05, 0.1, 0.001);
   //pid.Init(0.03, 0.0, 0.0);
   //Kp = 0.03 provides an acceptable drive until after the bridge.
-  // now trying to Ki to improve the already acceptable portion of the drive better
+  // now trying to Kd to improve the already acceptable portion of the drive better
   //pid.Init(0.03, 0.0, 0.1);
   //pid.Init(0.03, 0.0, 1.0);
-  // Ki = 1.0 improved the drive
-  pid.Init(0.03, 0.0, 1.1);
+  // Kd = 1.0 improved the drive
+  //pid.Init(0.03, 0.0, 1.1);
+  pid.Init(0.03, 0.0, 2.0);
 
 
   pid.p_error = 0.0;
