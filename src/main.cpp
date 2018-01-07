@@ -49,8 +49,16 @@ int main()
   //pid.Init(0.025, 0.001, 0.0001);
   //pid.Init(0.05, 1.0, 0.0001);
   //pid.Init(0.05, 0.1, 0.001);
-  pid.Init(0.05, 0.1, 0.001);
+
+  //good inistial gain values
+  pid.Init(0.05, 0.0, 0.0);
   pid.p_error = 0.0;
+
+  //time step counter
+  int tstep = 0;
+
+  // previous error
+  double prev_error
 
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -76,7 +84,29 @@ int main()
           * another PID controller to control the speed!
           */
 
-          pid.UpdateError(cte);
+          tstep += 1;
+          if (tstep==20){
+            double dp = 0.01
+            std::cout<< "previous total error" <<prev_error<<endl;
+            std::cout<< "current total error" <<pid.total_error<<endl;
+
+            if (prev_error<pid.total_error){
+              std::cout<<"improvement"<<endl;
+            } else {
+              std::cout<<"No improvement"<<endl;
+            }
+
+            prev_error = pid.total_error;
+
+            // This to be changed for each gain
+            pid.Kp += dp;
+            //pid.Kd += dp;
+            //pid.Ki += dp;
+            tstep = 0;
+          }
+
+
+          pid.UpdateError(fabs(cte, tstep));
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
 
           if (steer_value>1.0){
@@ -86,6 +116,9 @@ int main()
           if (steer_value<-1.0){
             steer_value = -1.0;
           }
+
+          pid.TotalError(cte);
+
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
