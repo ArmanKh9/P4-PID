@@ -18,9 +18,11 @@ public:
   double Kd;
 
   /*
-  * Coefficients
+  * other parameters
   */
   double total_error;
+  int tstep;
+  double prev_error;
 
   /*
   * Constructor

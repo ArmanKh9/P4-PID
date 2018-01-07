@@ -53,14 +53,8 @@ int main()
   //good inistial gain values
   pid.Init(0.05, 0.0, 0.0);
   pid.p_error = 0.0;
-
-  //time step counter
-  std::int tstep;
-  tstep = 0;
-
-  // previous error
-  std::double prev_error;
-  prev_error = 0.0;
+  pid.tstep = 0;
+  pid.prev_error = 0.0;
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -84,25 +78,25 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          tstep += 1;
-          if (tstep==20){
+          pid.tstep += 1;
+          if (pid.tstep==20){
             double dp = 0.01;
-            std::cout<< "previous total error" <<prev_error<<std::endl;
+            std::cout<< "previous total error" <<pid.prev_error<<std::endl;
             std::cout<< "current total error" <<pid.total_error<<std::endl;
 
-            if (prev_error<pid.total_error){
+            if (pid.prev_error<pid.total_error){
               std::cout<<"improvement"<<std::endl;
             } else {
               std::cout<<"No improvement"<<std::endl;
             }
 
-            prev_error = pid.total_error;
+            pid.prev_error = pid.total_error;
 
             // This to be changed for each gain
             pid.Kp += dp;
             //pid.Kd += dp;
             //pid.Ki += dp;
-            tstep = 0;
+            pid.tstep = 0;
           }
 
           pid.UpdateError(fabs(cte));
