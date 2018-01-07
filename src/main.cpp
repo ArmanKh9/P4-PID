@@ -49,9 +49,8 @@ int main()
   //pid.Init(0.025, 0.001, 0.0001);
   //pid.Init(0.05, 1.0, 0.0001);
   //pid.Init(0.05, 0.1, 0.001);
+  pid.Init(0.03, 0.0, 0.0);
 
-  //good inistial gain values
-  pid.Init(0.05, 0.0, 0.0);
   pid.p_error = 0.0;
   pid.tstep = 0;
   pid.prev_error = 0.0;
@@ -78,7 +77,7 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          pid.tstep += 1;
+          /*pid.tstep += 1;
           double dp = 0.01;
           if (pid.tstep==100){
 
@@ -99,7 +98,7 @@ int main()
             pid.prev_error = pid.total_error;
 
             pid.tstep = 0;
-          }
+          }*/
 
           pid.UpdateError(fabs(cte));
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
@@ -116,6 +115,7 @@ int main()
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          //std::cout << "total error: " << pid.total_error<<std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
