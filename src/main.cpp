@@ -58,7 +58,7 @@ int main()
   int tstep = 0;
 
   // previous error
-  double prev_error
+  double prev_error;
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
