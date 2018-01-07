@@ -60,7 +60,6 @@ int main()
   // previous error
   double prev_error
 
-
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -83,7 +82,6 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-
           tstep += 1;
           if (tstep==20){
             double dp = 0.01
@@ -105,7 +103,6 @@ int main()
             tstep = 0;
           }
 
-
           pid.UpdateError(fabs(cte, tstep));
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
 
@@ -119,10 +116,8 @@ int main()
 
           pid.TotalError(cte);
 
-
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
-          //std::cout << "CTE: " << cte << " d_error " << pid.d_e << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
