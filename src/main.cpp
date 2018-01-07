@@ -55,11 +55,11 @@ int main()
   pid.p_error = 0.0;
 
   //time step counter
-  int tstep;
+  std::int tstep;
   tstep = 0;
 
   // previous error
-  double prev_error;
+  std::double prev_error;
   prev_error = 0.0;
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -105,7 +105,7 @@ int main()
             tstep = 0;
           }
 
-          pid.UpdateError(fabs(cte, tstep));
+          pid.UpdateError(fabs(cte));
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
 
           if (steer_value>1.0){
