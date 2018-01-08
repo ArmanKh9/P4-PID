@@ -119,7 +119,7 @@ int main()
             pid.tstep = 0;
           }*/
 
-          pid.UpdateError(fabs(cte));
+          pid.UpdateError(cte);
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
 
           if (steer_value>1.0){
