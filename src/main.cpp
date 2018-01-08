@@ -140,7 +140,7 @@ int main()
           // DEBUG
           //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
-          if (tstep == 2000){
+          if (pid.tstep == 2000){
             std::cout << "total error: " << pid.total_error<<std::endl;
           }
 
