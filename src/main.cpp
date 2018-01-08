@@ -145,7 +145,7 @@ int main()
           if (pid.tstep == 2000){
             std::cout << "--------------------------total error: " << pid.total_error<<std::endl;
           }
-          //std::cout << "time step: " << pid.tstep<<std::endl;
+          std::cout << "time step: " << pid.tstep<<std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
