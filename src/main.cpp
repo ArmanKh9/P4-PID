@@ -59,9 +59,12 @@ int main()
   //pid.Init(0.03, 0.0, 2.0);
   // drive improved
   //pid.Init(0.03, 0.0, 3.0);
-  //with kp = 3.0 car mdrive a little bit more on the road but very wavy
+  //with kp = 3.0 car mdrive a little bit more on the road but very wavery
   //pid.Init(0.03, 0.0, 4.0);
-  pid.Init(0.03, 0.0, 5.0);
+  //pid.Init(0.03, 0.0, 5.0);
+  // Kd = 5.0 made the drive more wavy and no improvement on how far the car drove on the road. So Kd = 3.0 forth
+  // for now is a good point to start tuning Ki
+  pid.Init(0.03, 0.1, 5.0);
 
 
   pid.p_error = 0.0;
