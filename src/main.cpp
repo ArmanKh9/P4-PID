@@ -72,7 +72,7 @@ int main()
   //pid.Init(0.03, 0.00001, 3.0);
   //Ki = 0.00001 resulted in full round drive.
   /*---------- Fine Tuning ----------*/
-
+  pid.Init(0.03, 0.00001, 3.0)
 
   pid.p_error = 0.0;
   pid.tstep = 0;
@@ -140,9 +140,10 @@ int main()
           // DEBUG
           //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
-          if (pid.tstep == 2000){
-            std::cout << "total error: " << pid.total_error<<std::endl;
-          }
+          //if (pid.tstep == 2000){
+          //  std::cout << "--------------------------total error: " << pid.total_error<<std::endl;
+          //}
+          std::cout << "time step: " << pid.tstep<<std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
