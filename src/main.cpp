@@ -86,7 +86,8 @@ int main()
   //pid.Init(0.032, 0.00012, 2.9); ----> total error = 3342
   //pid.Init(0.032, 0.00013, 2.9); ----> total error = 3657
   //pid.Init(0.032, 0.00012, 2.8); ----> total error = 4329
-    pid.Init(0.032, 0.00012, 2.91);
+  //pid.Init(0.032, 0.00012, 2.91); ----> total error = 3417
+  pid.Init(0.032, 0.00012, 2.90);
 
 
   pid.p_error = 0.0;
