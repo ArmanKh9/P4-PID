@@ -66,7 +66,8 @@ int main()
   // for now is a good point to start tuning Ki
   //pid.Init(0.03, 0.1, 3.0);
   //pid.Init(0.03, 0.01, 3.0);
-  pid.Init(0.03, 0.001, 3.0);
+  //pid.Init(0.03, 0.001, 3.0);
+  pid.Init(0.03, 0.0001, 3.0);
 
 
   pid.p_error = 0.0;
