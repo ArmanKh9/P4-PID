@@ -117,28 +117,6 @@ int main()
           * another PID controller to control the speed!
           */
           pid.tstep += 1;
-          /*
-          double dp = 0.01;
-          if (pid.tstep==100){
-
-            // This to be changed for each gain
-            pid.Kp += dp;
-            //pid.Kd += dp;
-            //pid.Ki += dp;
-
-            std::cout<< "previous total error" <<pid.prev_error<<std::endl;
-            std::cout<< "current total error" <<pid.total_error<<std::endl;
-
-            if (pid.prev_error>pid.total_error){
-              std::cout<<"improvement"<<std::endl;
-            } else {
-              std::cout<<"No improvement"<<std::endl;
-            }
-
-            pid.prev_error = pid.total_error;
-
-            pid.tstep = 0;
-          }*/
 
           pid.UpdateError(cte);
           steer_value = -pid.Kp*pid.p_error - pid.Kd*pid.d_error - pid.Ki*pid.i_error;
@@ -154,7 +132,7 @@ int main()
           pid.TotalError(cte);
 
           // DEBUG
-          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           if (pid.tstep == 2000){
             std::cout << "--------------------------total error: " << pid.total_error<<std::endl;
