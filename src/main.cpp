@@ -71,10 +71,10 @@ int main()
   //pid.Init(0.03, 0.0005, 3.0);
   //pid.Init(0.03, 0.00001, 3.0);
   //Ki = 0.00001 resulted in full round drive.
-  /*---------- Fine Tuning ----------*/
-  //pid.Init(0.03, 0.00001, 3.0); ----> total error = 3306
+  /*---------- Fine Tuning for 2000 time step ----------*/
+  //pid.Init(0.03, 0.00001, 3.0); ----> total error = 6424
   //pid.Init(0.031, 0.00001, 3.0); ----> total error = 3279
-  pid.Init(0.03, 0.00001, 3.0);
+  pid.Init(0.031, 0.00001, 3.0);
 
   pid.p_error = 0.0;
   pid.tstep = 0;
