@@ -58,7 +58,9 @@ int main()
   //pid.Init(0.03, 0.0, 1.1);
   //pid.Init(0.03, 0.0, 2.0);
   // drive improved
-  pid.Init(0.03, 0.0, 3.0);
+  //pid.Init(0.03, 0.0, 3.0);
+  //with kp = 3.0 car mdrive a little bit more on the road but very wavy
+  pid.Init(0.03, 0.0, 4.0);
 
 
   pid.p_error = 0.0;
