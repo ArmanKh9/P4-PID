@@ -69,7 +69,9 @@ int main()
   //pid.Init(0.03, 0.001, 3.0);
   //pid.Init(0.03, 0.0001, 3.0);
   //pid.Init(0.03, 0.0005, 3.0);
-  pid.Init(0.03, 0.00001, 3.0);
+  //pid.Init(0.03, 0.00001, 3.0);
+  //Ki = 0.00001 resulted in full round drive.
+  /*---------- Fine Tuning ----------*/
 
 
   pid.p_error = 0.0;
@@ -98,7 +100,8 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          /*pid.tstep += 1;
+          pid.tstep += 1;
+          /*
           double dp = 0.01;
           if (pid.tstep==100){
 
@@ -135,8 +138,11 @@ int main()
           pid.TotalError(cte);
 
           // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
-          //std::cout << "total error: " << pid.total_error<<std::endl;
+          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+
+          if (tstep == 2000){
+            std::cout << "total error: " << pid.total_error<<std::endl;
+          }
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
