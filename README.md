@@ -9,19 +9,33 @@ Based on my background in Mechanical Engineering, I knew setting D and I gains t
 Once all three parameter initial estimation was done, I performed a fine tuning process. In this process, I recorded the car total error after 2000 time steps. This number of time steps allows the error to settle and be more reliable compare to 1000 step. 2000 time step is about two rounds in the driving loop. At each step of the fine tuning process, I varied one of the gains by one order of magnitude smaller than the initial estimation and recorded the total error. I refined the gains based on decrease in the error. Below is a portion of the fine tuning steps that I took:
 
 //pid.Init(0.03, 0.00001, 3.0); ----> total error = 6424
+
 //pid.Init(0.031, 0.00001, 3.0); ----> total error = 6064
+
 //pid.Init(0.032, 0.00001, 3.0); ----> total error = 5896
+
 //pid.Init(0.033, 0.00001, 3.0); ----> total error = 6071
+
 //pid.Init(0.032, 0.00001, 3.1); ----> total error = 5976
+
 //pid.Init(0.032, 0.00001, 2.9); ----> total error = 5864
+
 //pid.Init(0.032, 0.00002, 2.9); ----> total error = 4631
+
 //pid.Init(0.032, 0.00003, 2.9); ----> total error = 4401
+
 //pid.Init(0.032, 0.0001, 2.9); ----> total error = 4037
+
 //pid.Init(0.032, 0.0002, 2.9); ----> total error = 4426
+
 //pid.Init(0.032, 0.00011, 2.9); ----> total error = 3623
+
 //pid.Init(0.032, 0.00012, 2.9); ----> total error = 3342
+
 //pid.Init(0.032, 0.00013, 2.9); ----> total error = 3657
+
 //pid.Init(0.032, 0.00012, 2.8); ----> total error = 4329
+
 //pid.Init(0.032, 0.00012, 2.91); ----> total error = 3417
 
 The fine tuning process can done for more time steps and smaller tuning values to provide a more optimized gains.
