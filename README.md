@@ -2,6 +2,38 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+In this project, a PID controller implemented to control steering of a car wheels to keep the car driving between lane lines on the road. The PID controller gains were found and tuned manually in order to achieve an optimum control point.
+
+Based on my background in Mechanical Engineering, I knew setting D and I gains to zero and guessing P gain is an easy way to start finding a controller gains. Also, behavior of a controller with too large or too small P gain is obvious. The second parameter to guess was the D gain. After finding a good enough D gain, I guessed the I gain.
+
+Once all three parameter initial estimation was done, I performed a fine tuning process. In this process, I recorded the car total error after 2000 time steps. This number of time steps allows the error to settle and be more reliable compare to 1000 step. 2000 time step is about two rounds in the driving loop. At each step of the fine tuning process, I varied one of the gains by one order of magnitude smaller than the initial estimation and recorded the total error. I refined the gains based on decrease in the error. Below is a portion of the fine tuning steps that I took:
+
+//pid.Init(0.03, 0.00001, 3.0); ----> total error = 6424
+//pid.Init(0.031, 0.00001, 3.0); ----> total error = 6064
+//pid.Init(0.032, 0.00001, 3.0); ----> total error = 5896
+//pid.Init(0.033, 0.00001, 3.0); ----> total error = 6071
+//pid.Init(0.032, 0.00001, 3.1); ----> total error = 5976
+//pid.Init(0.032, 0.00001, 2.9); ----> total error = 5864
+//pid.Init(0.032, 0.00002, 2.9); ----> total error = 4631
+//pid.Init(0.032, 0.00003, 2.9); ----> total error = 4401
+//pid.Init(0.032, 0.0001, 2.9); ----> total error = 4037
+//pid.Init(0.032, 0.0002, 2.9); ----> total error = 4426
+//pid.Init(0.032, 0.00011, 2.9); ----> total error = 3623
+//pid.Init(0.032, 0.00012, 2.9); ----> total error = 3342
+//pid.Init(0.032, 0.00013, 2.9); ----> total error = 3657
+//pid.Init(0.032, 0.00012, 2.8); ----> total error = 4329
+//pid.Init(0.032, 0.00012, 2.91); ----> total error = 3417
+
+The fine tuning process can done for more time steps and smaller tuning values to provide a more optimized gains.
+
+Effect of P gain:
+The P gain determines how much the steering angle proportionally needs to change based on the evaluated error. A large P causes instability in the car movement around the center of the road and can result the car to move out of the track. A small P gain cannot change the steering angle enough for the car to decrease the error.
+
+Effect of D gain:
+The D gain helps the car to somehow predict the future error based on the last two time step errors. In other words, if the car moving away from the road center the D controller will increase the steering angle to move the car back to the center. A large D gain causes wavy movement specially at turns. A small D gain cannot adjust the steering angle enough when the car is suddenly moving away from the center.
+
+Effect of I gain:
+The I gain helps the car to reduce the steady error to zero. A large I gain causes oscillation and a small I gain fails to reduce the steady error. This becomes obvious at turns as well.  
 
 ## Dependencies
 
@@ -19,7 +51,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `./install-mac.sh` or `./install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -33,7 +65,7 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
@@ -95,4 +127,3 @@ still be compilable with cmake and make./
 
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-

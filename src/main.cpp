@@ -33,11 +33,8 @@ int main()
   uWS::Hub h;
 
   PID pid;
-  // TODO: Initialize the pid variable.
-  //pid.Init(0.1, 0.1, 0.1);
-  //pid.Init(0.01, 0.1, 0.1);
-  //pid.Init(0.1, 1.0, 0.1);
-  //pid.Init(0.1, 0.1, 1.0);
+  /*---------- Rough tuning for the car to drive one full round ----------*/
+  //pid.Init(1.0, 0.0, 0.0);
   //pid.Init(0.01, 0.0, 0.0);
   //pid.Init(0.05, 0.0, 0.0);
   //pid.Init(0.05, 0.01, 0.0);
@@ -51,7 +48,7 @@ int main()
   //pid.Init(0.05, 0.1, 0.001);
   //pid.Init(0.03, 0.0, 0.0);
   //Kp = 0.03 provides an acceptable drive until after the bridge.
-  // now trying to Kd to improve the already acceptable portion of the drive better
+  // now trying to tune Kd to improve the already acceptable portion of the drive better
   //pid.Init(0.03, 0.0, 0.1);
   //pid.Init(0.03, 0.0, 1.0);
   // Kd = 1.0 improved the drive
@@ -59,18 +56,19 @@ int main()
   //pid.Init(0.03, 0.0, 2.0);
   // drive improved
   //pid.Init(0.03, 0.0, 3.0);
-  //with kp = 3.0 car mdrive a little bit more on the road but very wavery
+  //with kp = 3.0 car drive a little bit more on the road but very wavery
   //pid.Init(0.03, 0.0, 4.0);
   //pid.Init(0.03, 0.0, 5.0);
-  // Kd = 5.0 made the drive more wavy and no improvement on how far the car drove on the road. So Kd = 3.0 forth
-  // for now is a good point to start tuning Ki
+  // Kd = 5.0 made the drive more wavy and no improvement on how far the car drove on the road. So Kd = 3.0
+  // for now is a good point to start tuning the Ki
   //pid.Init(0.03, 0.1, 3.0);
   //pid.Init(0.03, 0.01, 3.0);
   //pid.Init(0.03, 0.001, 3.0);
   //pid.Init(0.03, 0.0001, 3.0);
   //pid.Init(0.03, 0.0005, 3.0);
   //pid.Init(0.03, 0.00001, 3.0);
-  //Ki = 0.00001 resulted in full round drive.
+  //Ki = 0.00001 resulted in a full round drive
+
   /*---------- Fine Tuning for 2000 time step ----------*/
   //pid.Init(0.03, 0.00001, 3.0); ----> total error = 6424
   //pid.Init(0.031, 0.00001, 3.0); ----> total error = 6064
